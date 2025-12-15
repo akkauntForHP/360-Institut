@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° Institut</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <style>
+        body { margin: 0; padding: 0; background: #000; }
+        #panorama { width: 100vw; height: 100vh; }
+        .pnlm-hotspot-base.custom-arrow {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="white" opacity="0.8"/></svg>') no-repeat center;
+            background-size: contain;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+        .pnlm-hotspot-base.custom-arrow:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="panorama"></div>
+
+    <script>
+        pannellum.viewer('panorama', {
+            "type": "equirectangular",
+            "autoLoad": true,
+            "showControls": true,
+            "default": {
+                "firstScene": "kpp_front_view",
+                "sceneFadeDuration": 1500
+            },
+            "scenes": {
+                "kpp_front_view": {
+                    "title": "KPP Front View",
+                    "panorama": "kpp_front_view.jpg",
+                    "haov": 360,
+                    "vaov": 180,
+                    "hotSpots": [
+                        // 1-STRELKA - pitch va yaw ni o'zingiz kerakli joyga o'zgartiring
+                        {
+                            "pitch": -10,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "Oldinga",
+                            "sceneId": "kpp_inside_view",
+                            "cssClass": "custom-arrow"
+                        },
+                        // 2-STRELKA - agar kerak bo'lmasa butunlay o'chirib tashlang
+                        {
+                            "pitch": -10,
+                            "yaw": 180,
+                            "type": "scene",
+                            "text": "Orqaga",
+                            "sceneId": "markaz_front_view",
+                            "cssClass": "custom-arrow"
+                        }
+                    ]
+                },
+
+                "kpp_inside_view": {
+                    "title": "KPP Inside View",
+                    "panorama": "kpp_inside_view.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "markaz_front_view", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "kpp_front_view", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "markaz_front_view": {
+                    "title": "Markaz Front View",
+                    "panorama": "markaz_front_view.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "markaz_inside", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "kpp_inside_view", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "markaz_inside": {
+                    "title": "Markaz Inside",
+                    "panorama": "markaz_inside.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "plastbek", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "markaz_front_view", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "plastbek": {
+                    "title": "Plastbek",
+                    "panorama": "plastbek.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "first_floor", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "markaz_inside", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "first_floor": {
+                    "title": "First Floor",
+                    "panorama": "first_floor.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "padyom", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "plastbek", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "padyom": {
+                    "title": "Padyom",
+                    "panorama": "padyom.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "uc_kaz", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "first_floor", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "uc_kaz": {
+                    "title": "Uc Kaz",
+                    "panorama": "uc_kaz.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "uc_ow", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "padyom", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "uc_ow": {
+                    "title": "Uc Ow",
+                    "panorama": "uc_ow.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "kaz_orqa", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "uc_kaz", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "kaz_orqa": {
+                    "title": "Kaz Orqa",
+                    "panorama": "kaz_orqa.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "lanshaft", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "uc_ow", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "lanshaft": {
+                    "title": "Lanshaft",
+                    "panorama": "lanshaft.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "besetka", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "kaz_orqa", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "besetka": {
+                    "title": "Besetka",
+                    "panorama": "besetka.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "front_road", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "lanshaft", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "front_road": {
+                    "title": "Front Road",
+                    "panorama": "front_road.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "kaz_2", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "besetka", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "kaz_2": {
+                    "title": "Kaz 2",
+                    "panorama": "kaz_2.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "6_etajJJJ", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "front_road", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "6_etajJJJ": {
+                    "title": "6 Etaj",
+                    "panorama": "6_etajJJJ.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "kpp2", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "kaz_2", "cssClass": "custom-arrow" }
+                    ]
+                },
+
+                "kpp2": {
+                    "title": "KPP2",
+                    "panorama": "kpp2.jpg",
+                    "hotSpots": [
+                        // 1-STRELKA
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "", "sceneId": "kpp_front_view", "cssClass": "custom-arrow" },
+                        // 2-STRELKA
+                        { "pitch": -10, "yaw": 180, "type": "scene", "text": "", "sceneId": "6_etajJJJ", "cssClass": "custom-arrow" }
+                    ]
+                }
+            }
+        });
+    </script>
+</body>
+</html>
